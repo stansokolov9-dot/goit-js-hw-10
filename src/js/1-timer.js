@@ -6,7 +6,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const datetimePicker = document.querySelector('#datetime-picker');
 const startButton = document.querySelector('[data-start]');
-
+startButton.disabled = true;
 const daysValue = document.querySelector('[data-days]');
 const hoursValue = document.querySelector('[data-hours]');
 const minutesValue = document.querySelector('[data-minutes]');
@@ -65,6 +65,9 @@ function updateTimer({ days, hours, minutes, seconds }) {
   secondsValue.textContent = addLeadingZero(seconds);
 }
 function startTimer() {
+  if (!userSelectedDate) {
+    return;
+  }
   const timeLeft = userSelectedDate - new Date();
   updateTimer(convertMs(timeLeft));
 
